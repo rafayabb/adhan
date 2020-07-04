@@ -318,6 +318,9 @@ class PrayTimes():
 			times['isha'] = times['maghrib'] + self.eval(params['isha']) / 60.0
 		times['dhuhr'] += self.eval(params['dhuhr']) / 60.0
 
+		# i want adhan 20mins before sunrise
+		times['sunrise'] -= 20.0/60.0
+
 		return times
 
 	# get asr shadow factor
