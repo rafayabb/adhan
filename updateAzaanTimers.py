@@ -15,6 +15,7 @@ system_cron = CronTab(user='pi')
 
 now = datetime.datetime.now()
 strUpdateCommand = 'python /home/pi/adhan/updateAzaanTimers.py >> /home/pi/adhan/adhan.log 2>&1'
+strKillCommand = 'sudo killall /usr/bin/omxplayer.bin;sudo killall omxplayer'
 strClearLogsCommand = 'truncate -s 0 /home/pi/adhan/adhan.log 2>&1'
 strJobComment = 'rpiAdhanClockJob'
 
@@ -106,6 +107,7 @@ addAzaanTime('isha',times['isha'],system_cron,get_adhan_cmd())
 
 # Run this script again overnight
 addUpdateCronJob(system_cron, strUpdateCommand)
+addUpdateCronJob(system_cron, strKillCommand)
 
 # Clear the logs every month
 addClearLogsCronJob(system_cron,strClearLogsCommand)
